@@ -1,0 +1,28 @@
+How to do the assignment
+
+CALCULATING MAX BPM:
+
+maxBPM = 220 - age (in years)
+
+CALCULATING TARGET HEART RATE:
+
+Target heart rage is 50%-85% of maximum heart rate.
+
+PersonHeartRate Class:
+First name, last name, date of birth
+
+-DoB consists of month, day, and year
+-DoB has its own class, DateOfBirth, which has its own appropriate getters and setters.
+
+Program must have correct use of private and public modifiers, with the goal to have data only be modified through class methods
+
+
+Main method:
+Ask user for first name, last name, and age
+Put user input into new object and add object into ArrayList
+Allow user to keep inputting new data until they want to stop
+When the user finishes putting in data, output a formatted list of all the calculations in the following format:
+
+Last name, first name
+Max heart rate: (number)
+Target heart rate: (heart rate range)
