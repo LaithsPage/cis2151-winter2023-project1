@@ -40,7 +40,8 @@ public class PersonHeartRate {
 
     public int calculateAge(DateOfBirth birth) {
 
-        //Instantiates LocalDate object based on system clock
+        //Instantiates LocalDate object based on system clock.
+        //If the day changes during program execution, then the day will update when entering a new person's birthday!
         currentDate = LocalDate.now();
 
         //Current year - birth year = how many years have passed since your birth, NOT AGE
@@ -62,12 +63,14 @@ public class PersonHeartRate {
         return currentAge;
     }
 
+    //Calculates max heart rate with the necessary formula
     public int calculateMaxHeartRate(int age) {
 
         return 220 - age;
 
     }
 
+    //Calculates the target heart rate range and returns it with some formatting
     public String calculateTargetHeartRate(int maxHeartRate) {
 
         Double lowEndOfRange;
@@ -84,11 +87,16 @@ public class PersonHeartRate {
         return heartRateRange;
     }
 
-    public String printData() {
-        return "meow";
+    //Will print the name, max heart rate, and target heart rate range of a given PersonHeartRate instance
+    public void printData(PersonHeartRate personToPrint) {
+
+        //Only variable needed to be called later is the max heart rate. Can just
+        int personMaxHeartRate = personToPrint.calculateMaxHeartRate(personToPrint.calculateAge(personToPrint.getBirthInfo()));
+
+        //Print it all
+        System.out.println(personToPrint.getLastName() + ", " + personToPrint.getFirstName()
+        + "\n" + personMaxHeartRate + "\n" + personToPrint.calculateTargetHeartRate(personMaxHeartRate) + "\n");
+
     }
-
-
-
 
 }
