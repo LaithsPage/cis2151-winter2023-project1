@@ -6,6 +6,8 @@ public class DateOfBirth {
     private int birthDay;
     private int birthYear;
 
+
+    //Class constructor
     public DateOfBirth(int birthMonth, int birthDay, int birthYear) {
         this.birthMonth = birthMonth;
         this.birthDay = birthDay;

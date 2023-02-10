@@ -8,6 +8,7 @@ public class PersonHeartRate {
     private DateOfBirth birthInfo;
     private LocalDate currentDate;
 
+    //Class constructor
     public PersonHeartRate(String firstName, String lastName, DateOfBirth birthInfo) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -38,32 +39,31 @@ public class PersonHeartRate {
         this.birthInfo = birthInfo;
     }
 
+    //Function to calculate age
+    //Takes parameter for a DateOfBirth instance
+    //Creates new LocalDate instance that is assigned to currentDate reference
+    //Uses currentDate to get the current date from user's system clock, and then determines their age
+    //Local date class can provide date values as type int
+    //Formula for calculating age is (year - birth year) = age. Age is reduced by 1 if birthday has not occured this year
     public int calculateAge(DateOfBirth birth) {
 
-        //Instantiates LocalDate object based on system clock.
-        //If the day changes during program execution, then the day will update when entering a new person's birthday!
         currentDate = LocalDate.now();
 
-        //Current year - birth year = how many years have passed since your birth, NOT AGE
-        //If birth day is before or on current day, return age, if birth day is after current month/day, then subtract 1
+        int currentAge = currentDate.getYear() - birth.getBirthYear();
 
-        int currentAge = currentDate.getYear() - birth.getBirthYear(); // current year - birth year = how many years have passed, NOT age
-
-        //Check if your birth month has passed to correct age
-        if(currentDate.getMonthValue() < birth.getBirthMonth()) { // If your birth month hasn't passed yet, currerntAge--
+        if(currentDate.getMonthValue() < birth.getBirthMonth()) { // current month < birth month, i.e. if the birth month has past or not
             currentAge--;
         }
 
-        //Check if your birth day has passed to correct age
-        // If your birth month is the current month, but your birthday hasn't come yet, currentAge--
-        if(currentDate.getMonthValue() == birth.getBirthMonth() && currentDate.getDayOfMonth() < birth.getBirthDay()) {
+
+        if(currentDate.getMonthValue() == birth.getBirthMonth() && currentDate.getDayOfMonth() < birth.getBirthDay()) { //If your birth month is current month, check if day has past
             currentAge--;
         }
 
         return currentAge;
     }
 
-    //Calculates max heart rate with the necessary formula
+    //Calculates max heart rate with the formula from assignment instructions
     public int calculateMaxHeartRate(int age) {
 
         return 220 - age;
@@ -77,10 +77,9 @@ public class PersonHeartRate {
         Double highEndOfRange;
         String heartRateRange;
 
+        //converting to percentage
         lowEndOfRange = maxHeartRate * 0.50;
         highEndOfRange = maxHeartRate * 0.85;
-
-
 
         heartRateRange = lowEndOfRange + " - " + highEndOfRange;
 
@@ -88,12 +87,12 @@ public class PersonHeartRate {
     }
 
     //Will print the name, max heart rate, and target heart rate range of a given PersonHeartRate instance
+    //Instantiates variable of type int with the formula to calculate max heart rate
+    //Prints out the appropriate information with proper formatting
     public void printData(PersonHeartRate personToPrint) {
 
-        //Only variable needed to be called later is the max heart rate. Can just
         int personMaxHeartRate = personToPrint.calculateMaxHeartRate(personToPrint.calculateAge(personToPrint.getBirthInfo()));
 
-        //Print it all
         System.out.println(personToPrint.getLastName() + ", " + personToPrint.getFirstName()
         + "\n" + personMaxHeartRate + "\n" + personToPrint.calculateTargetHeartRate(personMaxHeartRate) + "\n");
 

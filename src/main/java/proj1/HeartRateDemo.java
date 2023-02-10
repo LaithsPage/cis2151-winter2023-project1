@@ -7,6 +7,7 @@ public class HeartRateDemo {
 
     //final array so its reference cannot be changed
     private static final ArrayList<PersonHeartRate> heartRateList = new ArrayList<PersonHeartRate>();
+    //boolean variable for using while loop, making it static allows to be referenced elsewhere, just in case other methods want to interact while program is running
     private static boolean endProgram = false;
 
     public static void main(String[] args) {
@@ -22,10 +23,12 @@ public class HeartRateDemo {
         int birthDay;
         int birthYear;
 
-        //while the user wants to continue
+        //While loop will continue until prompted by the user to stop.
+        //Keeps asking the user for the necessary information for calculating the heart rate info
+        //User input is used to create new object instances and then assigned to an ArrayList
         while(!endProgram) {
 
-            //get the necessary data from the user
+
             System.out.println("Please enter the person's first name");
             firstName = keyboard.nextLine();
             System.out.println("Please enter the person's last name");
@@ -37,19 +40,17 @@ public class HeartRateDemo {
             System.out.println("Please enter the person's year of birth");
             birthYear = Integer.parseInt(keyboard.nextLine());
 
-            //create the necessary objects and add them into our ArrayList
             DateOfBirth userBirthInput = new DateOfBirth(birthMonth, birthDay, birthYear);
             PersonHeartRate userPersonInput = new PersonHeartRate(firstName, lastName, userBirthInput);
             heartRateList.add(userPersonInput);
 
 
-            //ask user if they want to continue or not
             System.out.println("Would you like to enter a new person? This program can return the heart rate information for all users entered without overwriting previous entries." +
                     "Please enter 'Y' for 'yes' and 'N' for 'no'");
 
             String goAgain = keyboard.nextLine();
 
-            //ends the while loop if they do not want to continue
+
             if(goAgain.equalsIgnoreCase("n")) {
                 endProgram = true;
             }
