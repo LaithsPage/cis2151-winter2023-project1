@@ -1,6 +1,12 @@
 package proj1;
 import java.time.LocalDate;
 
+/**
+ * Proj1
+ * Author: Jacob "Laith" Riley
+ * Class: CIS 2151
+ * Prof: Dr. J
+ */
 public class PersonHeartRate {
 
     private String firstName;
@@ -15,6 +21,7 @@ public class PersonHeartRate {
         this.birthInfo = birthInfo;
     }
 
+    //Get and Set methods below
     public String getFirstName() {
         return firstName;
     }
@@ -39,12 +46,10 @@ public class PersonHeartRate {
         this.birthInfo = birthInfo;
     }
 
-    //Function to calculate age
-    //Takes parameter for a DateOfBirth instance
-    //Creates new LocalDate instance that is assigned to currentDate reference
-    //Uses currentDate to get the current date from user's system clock, and then determines their age
-    //Local date class can provide date values as type int
-    //Formula for calculating age is (year - birth year) = age. Age is reduced by 1 if birthday has not occured this year
+
+    //Method for calculating user's age. currentDate field is initialized to user's system clock using LocalDate.
+    //If the user leaves the program open and then comes back and enters new information, the current date will still be accurate.
+    //Will check if user's bday has passed the current day or not to accurately calculate information
     public int calculateAge(DateOfBirth birth) {
 
         currentDate = LocalDate.now();
@@ -54,12 +59,9 @@ public class PersonHeartRate {
         if(currentDate.getMonthValue() < birth.getBirthMonth()) { // current month < birth month, i.e. if the birth month has past or not
             currentAge--;
         }
-
-
         if(currentDate.getMonthValue() == birth.getBirthMonth() && currentDate.getDayOfMonth() < birth.getBirthDay()) { //If your birth month is current month, check if day has past
             currentAge--;
         }
-
         return currentAge;
     }
 
@@ -77,7 +79,6 @@ public class PersonHeartRate {
         Double highEndOfRange;
         String heartRateRange;
 
-        //converting to percentage
         lowEndOfRange = maxHeartRate * 0.50;
         highEndOfRange = maxHeartRate * 0.85;
 
@@ -86,9 +87,9 @@ public class PersonHeartRate {
         return heartRateRange;
     }
 
-    //Will print the name, max heart rate, and target heart rate range of a given PersonHeartRate instance
-    //Instantiates variable of type int with the formula to calculate max heart rate
-    //Prints out the appropriate information with proper formatting
+
+    //Prints out the data to user with formatting as specified in instructions.
+    //Since the calculations needed requires multiple steps, they were combined into one formula rather than storing each step into a variable
     public void printData(PersonHeartRate personToPrint) {
 
         int personMaxHeartRate = personToPrint.calculateMaxHeartRate(personToPrint.calculateAge(personToPrint.getBirthInfo()));

@@ -1,34 +1,35 @@
 package proj1;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Proj1
+ * Author: Jacob "Laith" Riley
+ * Class: CIS 2151
+ * Prof: Dr. J
+ */
 public class HeartRateDemo {
 
-    //final array so its reference cannot be changed
-    private static final ArrayList<PersonHeartRate> heartRateList = new ArrayList<PersonHeartRate>();
-    //boolean variable for using while loop, making it static allows to be referenced elsewhere, just in case other methods want to interact while program is running
-    private static boolean endProgram = false;
 
+    private static final ArrayList<PersonHeartRate> heartRateList = new ArrayList<>();
+
+    //Main method for HeartRate project
+    //Prompts user for information, adds it to the list, uses while loop and user input to run until user prompts it to stop,
+    // then will do a foreach loop on the list and print the information to the console. Checking if the user entered the correct type of information could be added in the future
     public static void main(String[] args) {
 
         Scanner keyboard = new Scanner(System.in);
 
         System.out.println("Welcome to the heart rate calculator. You will be prompted to enter information in by keyboard, then press enter to move to the next prompt");
 
-        //declaring variables before a loop so they do not get created multiple times
         String firstName;
         String lastName;
         int birthMonth;
         int birthDay;
         int birthYear;
+        boolean endProgram = false;
 
-        //While loop will continue until prompted by the user to stop.
-        //Keeps asking the user for the necessary information for calculating the heart rate info
-        //User input is used to create new object instances and then assigned to an ArrayList
         while(!endProgram) {
-
-
             System.out.println("Please enter the person's first name");
             firstName = keyboard.nextLine();
             System.out.println("Please enter the person's last name");
@@ -56,8 +57,6 @@ public class HeartRateDemo {
             }
 
         }
-
-        //reads through our ArrayList and prints the data out for all people in the ArrayList
         for(PersonHeartRate people : heartRateList) {
             people.printData(people);
         }

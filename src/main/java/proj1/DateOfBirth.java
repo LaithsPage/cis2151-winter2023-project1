@@ -1,5 +1,11 @@
 package proj1;
 
+/**
+ * Proj1
+ * Author: Jacob "Laith" Riley
+ * Class: CIS 2151
+ * Prof: Dr. J
+ */
 public class DateOfBirth {
 
     private int birthMonth;
